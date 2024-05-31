@@ -288,7 +288,10 @@ class Face_Recognizer:
 
     def run(self):
         # cap = cv2.VideoCapture("video.mp4")  # Get video stream from video file
-        cap = cv2.VideoCapture(0)              # Get video stream from camera
+        # cap = cv2.VideoCapture(0)              # Get video stream from camera
+        cap = cv2.VideoCapture("nvarguscamerasrc \
+            !video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=30/1\
+            !nvvidconv flip-method=0 ! videoconvert ! video/x-raw, format=BGR ! appsink")
         self.process(cap)
 
         cap.release()
