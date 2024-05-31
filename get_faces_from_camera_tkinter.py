@@ -111,9 +111,10 @@ class Face_Register:
         self.start_time = time.time()
 
         # self.cap = cv2.VideoCapture(0)  # Get video stream from camera
-        self.cap = cv2.VideoCapture("nvarguscamerasrc \
-            !video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=30/1\
-            !nvvidconv flip-method=0 ! videoconvert ! video/x-raw, format=BGR ! appsink")
+        # self.cap = cv2.VideoCapture("nvarguscamerasrc \
+        #     !video/x-raw(memory:NVMM), width=640, height=480, format=NV12, framerate=30/1\
+        #     !nvvidconv flip-method=0 ! videoconvert ! video/x-raw, format=BGR ! appsink")
+        self.cap = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
         # self.cap = cv2.VideoCapture("test.mp4")   # Input local video
 
     # 删除之前存的人脸数据文件夹 / Delete old face folders
