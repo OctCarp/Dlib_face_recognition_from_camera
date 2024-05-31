@@ -23,6 +23,35 @@ from PIL import Image, ImageTk
 detector = dlib.get_frontal_face_detector()
 
 
+# GStreamer 管道 / GStreamer pipeline
+def gstreamer_pipeline(
+    capture_width=1280,
+    capture_height=720,
+    display_width=1280,
+    display_height=720,
+    framerate=60,
+    flip_method=0,
+):
+    return (
+        "nvarguscamerasrc ! "
+        "video/x-raw(memory:NVMM), "
+        "width=(int)%d, height=(int)%d, "
+        "format=(string)NV12, framerate=(fraction)%d/1 ! "
+        "nvvidconv flip-method=%d ! "
+        "video/x-raw, width=(int)%d, height=(int)%d, format=(string)BGRx ! "
+        "videoconvert ! "
+        "video/x-raw, format=(string)BGR ! appsink"
+        % (
+            capture_width,
+            capture_height,
+            framerate,
+            flip_method,
+            display_width,
+            display_height,
+        )
+    )
+
+
 class Face_Register:
     def __init__(self):
 
@@ -82,6 +111,7 @@ class Face_Register:
         self.start_time = time.time()
 
         self.cap = cv2.VideoCapture(0)  # Get video stream from camera
+        self.cap = cv2.VideoCapture(gstreamer_pipeline(flip_method=0), cv2.CAP_GSTREAMER);
         # self.cap = cv2.VideoCapture("test.mp4")   # Input local video
 
     # 删除之前存的人脸数据文件夹 / Delete old face folders
@@ -237,6 +267,7 @@ class Face_Register:
         try:
             if self.cap.isOpened():
                 ret, frame = self.cap.read()
+                frame = cv2.resize(frame, (640, 480))
                 return ret, cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         except:
             print("Error: No video input!!!")
