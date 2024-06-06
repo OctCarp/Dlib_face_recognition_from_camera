@@ -8,9 +8,10 @@
 
 # 摄像头实时人脸识别 / Real-time face detection and recognition
 
-import dlib
+
 import numpy as np
 import cv2
+import dlib
 import pandas as pd
 import os
 import time

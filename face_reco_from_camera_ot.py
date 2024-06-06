@@ -10,9 +10,10 @@
 # 检测 -> 识别人脸, 新人脸出现 -> 不需要识别, 而是利用质心追踪来判断识别结果 / Do detection -> recognize face, new face -> not do re-recognition
 # 人脸进行再识别需要花费大量时间, 这里用 OT 做跟踪 / Do re-recognition for multi faces will cost much time, OT will be used to instead it
 
-import dlib
+
 import numpy as np
 import cv2
+import dlib
 import os
 import pandas as pd
 import time

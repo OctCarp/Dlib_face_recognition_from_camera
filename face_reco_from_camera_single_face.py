@@ -10,9 +10,10 @@
 # 检测 -> 识别人脸, 新人脸出现 -> 再识别, 不会对于每一帧都进行识别 / Do detection -> recognize face, new face -> do re-recognition
 # 其实对于单张人脸, 不需要 OT 进行跟踪, 对于新出现的人脸, 再识别一次就好了 / No OT here, OT will be used only for multi faces
 
-import dlib
+
 import numpy as np
 import cv2
+import dlib
 import os
 import pandas as pd
 import time

@@ -8,9 +8,10 @@
 
 # 进行人脸录入 / Face register
 
-import dlib
+
 import numpy as np
 import cv2
+import dlib
 import os
 import shutil
 import time

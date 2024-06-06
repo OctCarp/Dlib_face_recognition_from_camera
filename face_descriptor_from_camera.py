@@ -3,8 +3,8 @@
 
 # 摄像头实时人脸特征描述子计算 / Real-time face descriptor computing
 
-import dlib         # 人脸识别的库 Dlib
 import cv2          # 图像处理的库 OpenCV
+import dlib
 import time
 
 # 1. Dlib 正向人脸检测器

@@ -9,11 +9,11 @@
 # 从人脸图像文件中提取人脸特征存入 "features_all.csv" / Extract features from images and save into "features_all.csv"
 
 import os
-import dlib
 import csv
 import numpy as np
 import logging
 import cv2
+import dlib
 
 # 要读取人脸图像文件的路径 / Path of cropped faces
 path_images_from_camera = "data/data_faces_from_camera/"
